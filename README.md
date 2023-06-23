@@ -9,3 +9,4 @@ Packages an RMI endpoint into a JAR embedded in a Docker container.
 1. Compile the code: `./build.sh` (or `./build-docker.sh` to also build a Docker image)
 2. Run the server: `./server.sh` (or `./server-docker.sh` to run it as a Docker container)
 3. Run the client: `./client.sh`
+   - use `./client.sh <n>` to run a batch of `n` calls, using `-1` to loop indefinitely
