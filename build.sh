@@ -1,8 +1,6 @@
-# Compile Java
-rm -rf out && mkdir out
-javac -d ./out src/*.java
+# Compile source code
+rm -rf out && mkdir -p out
+javac -d out src/*.java
 
 # Package into a JAR
-cd out
-jar cvf Server.jar *
-jar cfe Server.jar src/Server *
+cd out && jar cfe Server.jar src/Server *

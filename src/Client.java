@@ -8,8 +8,9 @@ public class Client {
 
   public static void main(final String[] args) {
     try {
-      final Interface iface = (Interface) LocateRegistry.getRegistry(Config.PORT).lookup(Config.REGISTRY_NAME);
-      System.out.println(String.format("Received: %d", iface.getAnswer()));
+      final RemoteInterface remote = (RemoteInterface) LocateRegistry.getRegistry(RemoteConfig.PORT)
+          .lookup(RemoteConfig.REGISTRY_NAME);
+      System.out.println(String.format("Received: %d", remote.getAnswer()));
     } catch (final RemoteException | NotBoundException e) {
       e.printStackTrace();
     }
