@@ -8,9 +8,16 @@ public class Client {
 
   public static void main(final String[] args) {
     try {
-      final RemoteInterface remote = (RemoteInterface) LocateRegistry.getRegistry(RemoteConfig.PORT)
+      final RemoteInterface remote = (RemoteInterface) LocateRegistry
+          .getRegistry(RemoteConfig.PORT)
           .lookup(RemoteConfig.REGISTRY_NAME);
-      System.out.println(String.format("Received: %d", remote.getAnswer()));
+
+      final Integer answer = remote.getAnswer();
+      System.out.println(String.format(
+          answer == 42
+              ? "Received: %d, how nice!"
+              : "Received: %d",
+          answer));
     } catch (final RemoteException | NotBoundException e) {
       e.printStackTrace();
     }
