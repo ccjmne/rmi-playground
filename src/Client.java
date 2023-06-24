@@ -17,11 +17,12 @@ public class Client {
       final var duration = System.nanoTime() - start;
 
       System.out.println(String.format(
-          "%-24sin %.2fms",
+          "%-24s~%.2fms",
           String.format("Received %d%s", answer, answer == 42 ? ", how nice!" : ""),
           duration / 1_000_000f));
     } catch (final RemoteException | NotBoundException e) {
-      e.printStackTrace();
+      System.err.println(e.getMessage());
+      System.exit(1);
     }
   }
 

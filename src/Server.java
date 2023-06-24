@@ -18,7 +18,8 @@ public class Server {
     try {
       REMOTE_IMPL = UnicastRemoteObject.exportObject(new RemoteImpl(), 0);
     } catch (final RemoteException e) {
-      e.printStackTrace();
+      System.err.println(e.getMessage());
+      System.exit(1);
     }
   }
 
@@ -27,7 +28,8 @@ public class Server {
       LocateRegistry.createRegistry(RemoteConfig.PORT).bind(RemoteConfig.REGISTRY_NAME, REMOTE_IMPL);
       System.out.println(String.format("Server listening on port %d", RemoteConfig.PORT));
     } catch (final Exception e) {
-      e.printStackTrace();
+      System.err.println(e.getMessage());
+      System.exit(1);
     }
   }
 
