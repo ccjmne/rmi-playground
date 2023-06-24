@@ -8,16 +8,18 @@ public class Client {
 
   public static void main(final String[] args) {
     try {
-      final RemoteInterface remote = (RemoteInterface) LocateRegistry
+      final var remote = (RemoteInterface) LocateRegistry
           .getRegistry(RemoteConfig.PORT)
           .lookup(RemoteConfig.REGISTRY_NAME);
 
-      final Integer answer = remote.getAnswer();
+      final var start = System.nanoTime();
+      final var answer = remote.getAnswer();
+      final var duration = System.nanoTime() - start;
+
       System.out.println(String.format(
-          answer == 42
-              ? "Received: %d, how nice!"
-              : "Received: %d",
-          answer));
+          "%-24sin %.2fms",
+          String.format("Received %d%s", answer, answer == 42 ? ", how nice!" : ""),
+          duration / 1_000_000f));
     } catch (final RemoteException | NotBoundException e) {
       e.printStackTrace();
     }

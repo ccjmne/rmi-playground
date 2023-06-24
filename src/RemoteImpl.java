@@ -12,7 +12,7 @@ public class RemoteImpl implements RemoteInterface {
    */
   @Override
   public Integer getAnswer() {
-    final Integer answer = RANDOM.nextInt(133);
+    final var answer = RANDOM.nextInt(133);
     return Integer.valueOf(answer > 100 ? 42 : answer);
   }
 
